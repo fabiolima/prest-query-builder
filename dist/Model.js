@@ -78,13 +78,9 @@ var Model = /** @class */ (function (_super) {
         _this.config = config;
         return _this;
     }
-    Object.defineProperty(Model.prototype, "baseUrl", {
-        get: function () {
-            return "" + (this.config.https ? 'https://' : 'http://') + this.config.domain + "/" + this.config.db + "/public/" + this.config.table;
-        },
-        enumerable: false,
-        configurable: true
-    });
+    Model.prototype.baseUrl = function () {
+        return "" + (this.config.https ? 'https://' : 'http://') + this.config.domain + "/" + this.config.db + "/public/" + this.config.table;
+    };
     Model.prototype.where = function (wQuery) {
         var q = wQuery.field + "=" + wQuery.operator + "." + wQuery.value;
         this.pipeline.push(q);
@@ -100,7 +96,7 @@ var Model = /** @class */ (function (_super) {
         if (field === void 0) { field = '*'; }
         this.pipeline.push("_count=" + field);
         var queryString = '?' + this.pipeline.join('&');
-        var endpoint = "" + this.baseUrl + queryString;
+        var endpoint = "" + this.baseUrl() + queryString;
         return this.client
             .get(endpoint)
             .then(function (response) { return response.data.count; })
@@ -149,7 +145,7 @@ var Model = /** @class */ (function (_super) {
     Model.prototype.run = function () {
         var _this = this;
         var queryString = '?' + this.pipeline.join('&');
-        var endpoint = "" + this.baseUrl + queryString;
+        var endpoint = "" + this.baseUrl() + queryString;
         return this.client
             .get(endpoint)
             .then(function (response) { return __awaiter(_this, void 0, void 0, function () {
