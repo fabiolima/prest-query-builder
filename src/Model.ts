@@ -15,7 +15,7 @@ export default class Model<T> extends BaseModel {
     this.config = config;
   }
 
-  get baseUrl(): string {
+  baseUrl(): string {
     return `${this.config.https ? 'https://' : 'http://'}${this.config.domain}/${this.config.db}/public/${this.config.table}`
   }
 
@@ -36,7 +36,7 @@ export default class Model<T> extends BaseModel {
 
     const queryString = '?' + this.pipeline.join('&')
 
-    const endpoint = `${this.baseUrl}${queryString}`
+    const endpoint = `${this.baseUrl()}${queryString}`
 
     return this.client
       .get<{ count: number }>(endpoint)
@@ -90,7 +90,7 @@ export default class Model<T> extends BaseModel {
   run(): Promise< T[] | { pagination: PageOptions, items: T[]} > {
     const queryString = '?' + this.pipeline.join('&')
 
-    const endpoint = `${this.baseUrl}${queryString}`
+    const endpoint = `${this.baseUrl()}${queryString}`
 
     return this.client
       .get<T[]>(endpoint)
