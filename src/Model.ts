@@ -37,6 +37,12 @@ export default class Model<T> extends BaseModel {
     return this
   }
 
+  order(field:string): this {
+    const q = `_order=${field}`
+    this.pipeline.push(q)
+    return this
+  }
+
   count(field = '*'): Promise<number> {
     this.pipeline.push(`_count=${field}`);
 

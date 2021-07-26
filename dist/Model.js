@@ -96,6 +96,11 @@ var Model = /** @class */ (function (_super) {
         this.pipeline.push(q);
         return this;
     };
+    Model.prototype.order = function (field) {
+        var q = "_order=" + field;
+        this.pipeline.push(q);
+        return this;
+    };
     Model.prototype.count = function (field) {
         var _this = this;
         if (field === void 0) { field = '*'; }

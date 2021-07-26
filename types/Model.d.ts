@@ -9,6 +9,7 @@ export default class Model<T> extends BaseModel {
     where(wQuery: WhereQuery): this;
     select(fields: string[]): this;
     join(jQuery: JoinQuery): this;
+    order(field: string): this;
     count(field?: string): Promise<number>;
     pagination(paginationOptions?: PageOptions): this;
     private buildPagination;
