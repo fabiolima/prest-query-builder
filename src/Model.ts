@@ -16,7 +16,7 @@ export default class Model<T> extends BaseModel {
   }
 
   baseUrl(): string {
-    return `${this.config.https ? 'https://' : 'http://'}${this.config.domain}/${this.config.db}/public/${this.config.table}`
+    return this.config.url || `${this.config.https ? 'https://' : 'http://'}${this.config.domain}/${this.config.db}/public/${this.config.table}`
   }
 
   where(wQuery: WhereQuery): this {

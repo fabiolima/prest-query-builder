@@ -8,7 +8,8 @@
     "build": "rimraf /dist && tsc",
     "start:dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint . --ext .ts --fix"
+    "lint": "eslint . --ext .ts --fix",
+    "gen-ts": "npx -p typescript tsc src/**.ts --declaration --emitDeclarationOnly --outDir types"
   },
   "keywords": [],
   "author": "",

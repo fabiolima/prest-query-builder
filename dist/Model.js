@@ -79,7 +79,7 @@ var Model = /** @class */ (function (_super) {
         return _this;
     }
     Model.prototype.baseUrl = function () {
-        return "" + (this.config.https ? 'https://' : 'http://') + this.config.domain + "/" + this.config.db + "/public/" + this.config.table;
+        return this.config.url || "" + (this.config.https ? 'https://' : 'http://') + this.config.domain + "/" + this.config.db + "/public/" + this.config.table;
     };
     Model.prototype.where = function (wQuery) {
         var q = wQuery.field + "=" + wQuery.operator + "." + wQuery.value;

@@ -5,6 +5,7 @@ export interface ModelConfig {
   db: string;
   table: string;
   https: boolean;
+  url?: string;
 }
 
 export interface Pagination {
