@@ -1,10 +1,10 @@
 import { AxiosInstance  } from "axios";
 
 export interface ModelConfig {
-  domain: string;
-  db: string;
-  table: string;
-  https: boolean;
+  domain?: string;
+  db?: string;
+  table?: string;
+  https?: boolean;
   url?: string;
 }
 
@@ -25,7 +25,6 @@ export interface PageOptions {
   pageSize: number;
 }
 
-// ?_join={TYPE}:{TABLE JOIN}:{TABLE.FIELD}:{OPERATOR}:{TABLE JOIN.FIELD}
 export interface JoinQuery {
   type: 'inner' | 'left' | 'right' | 'outer';
   tableJoin: string;

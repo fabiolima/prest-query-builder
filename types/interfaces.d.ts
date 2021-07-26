@@ -1,9 +1,9 @@
 import { AxiosInstance } from "axios";
 export interface ModelConfig {
-    domain: string;
-    db: string;
-    table: string;
-    https: boolean;
+    domain?: string;
+    db?: string;
+    table?: string;
+    https?: boolean;
     url?: string;
 }
 export interface Pagination {
