@@ -91,6 +91,11 @@ var Model = /** @class */ (function (_super) {
         this.pipeline.push(q);
         return this;
     };
+    Model.prototype.join = function (jQuery) {
+        var q = "_join=" + jQuery.type + ":" + jQuery.tableJoin + ":" + jQuery.tableJoin + "." + jQuery.tableJoinKey + ":" + jQuery.operator + ":" + jQuery.table + "." + jQuery.tableKey;
+        this.pipeline.push(q);
+        return this;
+    };
     Model.prototype.count = function (field) {
         var _this = this;
         if (field === void 0) { field = '*'; }

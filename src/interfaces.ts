@@ -25,6 +25,16 @@ export interface PageOptions {
   pageSize: number;
 }
 
+// ?_join={TYPE}:{TABLE JOIN}:{TABLE.FIELD}:{OPERATOR}:{TABLE JOIN.FIELD}
+export interface JoinQuery {
+  type: 'inner' | 'left' | 'right' | 'outer';
+  tableJoin: string;
+  tableJoinKey: string;
+  operator: '$eq' | '$lt' | '$gt' | '$lte' | '$gte';
+  table: string;
+  tableKey: string;
+}
+
 export interface WhereQuery {
   field: string;
   operator: '$eq' | '$gt' | '$gte' | '$lt' | '$lte' | '$ne' | '$in' | '$nin' | '$null' | '$notnull' | '$true' | '$nottrue' | '$false' | '$notfalse' | '$like' | '$ilike' ;

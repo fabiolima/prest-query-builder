@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { BaseModel, ModelConfig, PageOptions, Pagination, WhereQuery } from "./interfaces";
+import { BaseModel, JoinQuery, ModelConfig, PageOptions, Pagination, WhereQuery } from "./interfaces";
 import { _pageOptions, _pagination } from "./defaults";
 
 export default class Model<T> extends BaseModel {
@@ -27,6 +27,12 @@ export default class Model<T> extends BaseModel {
 
   select(fields: string[]): this {
     const q = `_select=${fields.join(',')}`
+    this.pipeline.push(q)
+    return this
+  }
+
+  join(jQuery: JoinQuery): this {
+    const q = `_join=${jQuery.type}:${jQuery.tableJoin}:${jQuery.tableJoin}.${jQuery.tableJoinKey}:${jQuery.operator}:${jQuery.table}.${jQuery.tableKey}`
     this.pipeline.push(q)
     return this
   }

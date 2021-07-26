@@ -21,6 +21,14 @@ export interface PageOptions {
     page: number;
     pageSize: number;
 }
+export interface JoinQuery {
+    type: 'inner' | 'left' | 'right' | 'outer';
+    tableJoin: string;
+    tableJoinKey: string;
+    operator: '$eq' | '$lt' | '$gt' | '$lte' | '$gte';
+    table: string;
+    tableKey: string;
+}
 export interface WhereQuery {
     field: string;
     operator: '$eq' | '$gt' | '$gte' | '$lt' | '$lte' | '$ne' | '$in' | '$nin' | '$null' | '$notnull' | '$true' | '$nottrue' | '$false' | '$notfalse' | '$like' | '$ilike';

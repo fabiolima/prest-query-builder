@@ -1,4 +1,4 @@
-import { BaseModel, ModelConfig, PageOptions, WhereQuery } from "./interfaces";
+import { BaseModel, JoinQuery, ModelConfig, PageOptions, WhereQuery } from "./interfaces";
 export default class Model<T> extends BaseModel {
     private config;
     private pipeline;
@@ -8,6 +8,7 @@ export default class Model<T> extends BaseModel {
     baseUrl(): string;
     where(wQuery: WhereQuery): this;
     select(fields: string[]): this;
+    join(jQuery: JoinQuery): this;
     count(field?: string): Promise<number>;
     pagination(paginationOptions?: PageOptions): this;
     private buildPagination;
