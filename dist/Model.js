@@ -75,6 +75,7 @@ var Model = /** @class */ (function (_super) {
         _this.pipeline = [];
         _this.paginate = false;
         _this._pagination = {};
+        _this._order = '';
         _this.config = config;
         return _this;
     }
@@ -98,6 +99,7 @@ var Model = /** @class */ (function (_super) {
     };
     Model.prototype.order = function (field) {
         var q = "_order=" + field;
+        this._order = q;
         this.pipeline.push(q);
         return this;
     };
@@ -165,8 +167,9 @@ var Model = /** @class */ (function (_super) {
                     case 0:
                         if (!this.paginate)
                             return [2 /*return*/, response.data];
-                        console.log(this._pagination);
-                        totalEndpoint = endpoint.replace(this._pagination._q, '');
+                        totalEndpoint = endpoint
+                            .replace(this._pagination._q, '')
+                            .replace(this._order, '');
                         return [4 /*yield*/, this.client
                                 .get(totalEndpoint + '&_count=*')
                                 .then(function (r) { return r.data.count; })

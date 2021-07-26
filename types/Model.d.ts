@@ -4,6 +4,7 @@ export default class Model<T> extends BaseModel {
     private pipeline;
     private paginate;
     private _pagination;
+    private _order;
     constructor(config: ModelConfig);
     baseUrl(): string;
     where(wQuery: WhereQuery): this;

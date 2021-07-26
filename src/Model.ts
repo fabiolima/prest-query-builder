@@ -9,6 +9,7 @@ export default class Model<T> extends BaseModel {
 
   private paginate = false;
   private _pagination: Pagination = {} as Pagination
+  private _order: string = '';
 
   constructor(config: ModelConfig) {
     super(axios)
@@ -39,6 +40,7 @@ export default class Model<T> extends BaseModel {
 
   order(field:string): this {
     const q = `_order=${field}`
+    this._order = q
     this.pipeline.push(q)
     return this
   }
@@ -109,8 +111,9 @@ export default class Model<T> extends BaseModel {
       .then( async (response) => {
         if (!this.paginate) return response.data
 
-        console.log(this._pagination)
-        const totalEndpoint = endpoint.replace(this._pagination._q as string, '')
+        const totalEndpoint = endpoint
+          .replace(this._pagination._q as string, '')
+          .replace(this._order, '')
 
         const total = await this.client
           .get<{ count: number}>(totalEndpoint + '&_count=*')
