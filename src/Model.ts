@@ -9,10 +9,10 @@ export default class Model<T> extends BaseModel {
 
   private paginate = false;
   private _pagination: Pagination = {} as Pagination
-  private _order: string = '';
+  private _order = '';
 
   constructor(config: ModelConfig) {
-    super(axios)
+    super(axios, config)
     this.config = config;
   }
 

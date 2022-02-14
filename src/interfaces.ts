@@ -6,6 +6,7 @@ export interface ModelConfig {
   table?: string;
   https?: boolean;
   url?: string;
+  authorization_token?: string;
 }
 
 export interface Pagination {
@@ -48,7 +49,11 @@ export interface FilterQuery {
 export class BaseModel {
   client!: AxiosInstance
 
-  constructor(client: AxiosInstance) {
+  constructor(client: AxiosInstance, config: ModelConfig) {
+    if (config.authorization_token) {
+      client.defaults.headers['Authorization'] = `Bearer ${config.authorization_token}`
+    }
+
     this.client = client
   }
 }
